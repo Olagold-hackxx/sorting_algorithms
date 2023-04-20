@@ -1,0 +1,1 @@
+This project is aim at learning Sorting Algorithm in C, Big O-notation and other related topics
