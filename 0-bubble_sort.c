@@ -2,8 +2,8 @@
 
 /**
 * bubble_sort - sort with bubble sort algorithm
-* array - array to sort
-* size - size of array
+* @array: array to sort
+* @size: size of array
 */
 void bubble_sort(int *array, size_t size)
 {
