@@ -31,5 +31,8 @@ void quick_sort(int *array, size_t size);
 void swap_arr(int *a, int *b);
 int partition(int *array, int firstIndex, int lastIndex, size_t size);
 void quickSort(int *array, int firstIndex, int lastIndex, size_t size);
+void shell_sort(int *array, size_t size);
+void cocktail_sort_list(listint_t **list);
+void cocktailSort(listint_t **list, int direction);
 
 #endif /*SORT_H*/
