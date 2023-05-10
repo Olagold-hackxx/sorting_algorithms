@@ -1,7 +1,7 @@
 #include "sort.h"
 void swap_bitonic(int *arr, int a, int b);
 void recBitonicSort(int *arr, int lo, int cnt, int dir, size_t n);
-void bitonicMerge(int *arr, int lo, int cnt, int dir);
+void bitonicMerge(int *arr, int lo, int cnt, int dir, size_t n);
 
 
 /**
@@ -36,7 +36,7 @@ void swap_bitonic(int *arr, int i, int j)
  * @cnt: last index
  * @dir: 1 for ascending swapping 0 for descending
  */
-void bitonicMerge(int *arr, int lo, int cnt, int dir)
+void bitonicMerge(int *arr, int lo, int cnt, int dir, size_t n)
 {
 	int i, k;
 
@@ -48,10 +48,11 @@ void bitonicMerge(int *arr, int lo, int cnt, int dir)
 			if (dir == (arr[i] > arr[i + k]))
 			{
 				swap_bitonic(arr, i, i + k);
+				print_array(arr, n);
 			}
 		}
-		bitonicMerge(arr, lo, k, dir);
-		bitonicMerge(arr, lo + k, k, dir);
+		bitonicMerge(arr, lo, k, dir, n);
+		bitonicMerge(arr, lo + k, k, dir, n);
 	}
 }
 
@@ -69,24 +70,9 @@ void recBitonicSort(int *arr, int lo, int cnt, int dir, size_t n)
 
 	if (cnt > 1)
 	{
-		if (dir == 1)
-		{
-			printf("Merging [%d/%lu] (UP)\n", cnt, n);
-			print_array(&arr[lo], cnt);
-		}
-		else if (dir == 0)
-		{
-			printf("Merging [%d/%lu] (DOWN)\n", cnt, n);
-			print_array(&arr[lo], cnt);
-		}
 		k = cnt / 2;
 		recBitonicSort(arr, lo, k, 1, n);
 		recBitonicSort(arr, lo + k, k, 0, n);
-		bitonicMerge(arr, lo, cnt, dir);
-		if (dir == 1)
-			printf("Result [%d/%lu] (UP)\n", cnt, n);
-		else if (dir == 0)
-			printf("Result [%d/%lu] (DOWN)\n", cnt, n);
-		print_array(&arr[lo], cnt);
+		bitonicMerge(arr, lo, cnt, dir, n);
 	}
 }
